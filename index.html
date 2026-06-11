@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eat More Pixels</title>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -68,6 +71,10 @@ body{
   font-size:15px;font-weight:600;color:var(--blk);text-decoration:none;
   display:flex;align-items:center;gap:10px;flex-shrink:0;
 }
+.nav-logo-icon{
+  width:28px;height:28px;border-radius:6px;
+  display:block;flex-shrink:0;object-fit:contain;
+}
 .nav-right{
   display:flex;align-items:center;gap:28px;
 }
@@ -77,13 +84,16 @@ body{
   white-space:nowrap;transition:opacity .2s;
   border-bottom:2px solid transparent;
   padding-bottom:2px;
+  display:flex;align-items:center;line-height:1;
 }
 .nav-links a:hover{opacity:.6;}
 .nav-cta{
   background:var(--blk);color:var(--white);
   font-size:13px;font-weight:500;
-  padding:8px 18px;border-radius:100px;text-decoration:none;
+  padding:9px 18px;border-radius:100px;text-decoration:none;
   white-space:nowrap;flex-shrink:0;
+  display:inline-flex;align-items:center;line-height:1;
+  position:relative;top:-2px;
   transition:background .15s;
 }
 .nav-cta:hover{background:#333;}
@@ -239,8 +249,17 @@ body{
 .t-time{font-size:8.5px;font-weight:600;color:var(--blk);line-height:1.3;}
 .t-sub{font-size:7.5px;color:#aaa;line-height:1.3;}
 
+/* ── APP ICON ────────────────────────────── */
+.app-icon{
+  width:56px;height:56px;border-radius:14px;
+  display:block;margin-bottom:16px;
+  box-shadow:0 4px 16px rgba(0,0,0,.12);
+  object-fit:cover;
+}
+
 /* ── OTHER WORK ──────────────────────────── */
-.work-section{padding:64px 24px;max-width:900px;margin:0 auto;}
+.work-section{background:var(--lt);padding:64px 24px;}
+.work-inner{max-width:900px;margin:0 auto;}
 .work-section h2{
   font-family:'Inter',sans-serif;
   font-size:clamp(26px,4vw,40px);letter-spacing:-1.5px;
@@ -254,17 +273,18 @@ body{
   display:grid;grid-template-columns:1fr 1fr;gap:16px;
 }
 .work-card{
-  border:1px solid var(--bdr);border-radius:12px;
+  background:var(--white);border:1px solid var(--bdr);border-radius:12px;
   overflow:hidden;transition:border-color .2s;
 }
-.work-card:hover{border-color:#bbb;}
-.work-card:nth-child(1):hover{border-color:rgba(92,158,71,.4);}
-.work-card:nth-child(2):hover{border-color:rgba(192,57,43,.3);}
 .work-card-img{
   width:100%;height:200px;
   background:var(--lt);
   border-bottom:1px solid var(--bdr);
-  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.work-card-img img{
+  width:100%;height:100%;
+  object-fit:cover;display:block;
 }
 .work-card:nth-child(1) .work-card-img{ background:rgba(92,158,71,.07); border-bottom-color:rgba(92,158,71,.15); }
 .work-card:nth-child(2) .work-card-img{ background:rgba(192,57,43,.06); border-bottom-color:rgba(192,57,43,.12); }
@@ -278,21 +298,20 @@ body{
 
 /* ── LOGOS SECTION ───────────────────────── */
 .logos-section{
-  background:var(--lt);
-  border-top:1px solid var(--bdr);
-  border-bottom:1px solid var(--bdr);
+  background:var(--white);
   padding:56px 24px;
 }
 .logos-inner{max-width:900px;margin:0 auto;}
 .logos-lbl{
   font-size:11px;letter-spacing:2px;text-transform:uppercase;
-  color:#bbb;margin-bottom:36px;text-align:center;
+  color:#555;margin-bottom:36px;text-align:center;
 }
-/* Logo grid. real img elements using Google favicon service as placeholder.
-   For production: replace src with actual logo file paths. */
 .logos-grid{
-  display:flex;flex-wrap:wrap;gap:24px 32px;
-  justify-content:center;align-items:center;
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  gap:24px 16px;
+  align-items:center;
+  justify-items:center;
 }
 .logo-item{
   display:flex;flex-direction:column;align-items:center;gap:8px;
@@ -305,18 +324,18 @@ body{
 .logo-img-wrap img{
   max-width:80px;max-height:44px;
   object-fit:contain;
-  /* grayscale filter for visual consistency. remove for full colour */
-  filter:grayscale(100%) opacity(55%);
   transition:filter .25s;
 }
-.logo-img-wrap img:hover{filter:grayscale(0%) opacity(100%);}
 .logo-img-wrap .logo-fb{
-  /* fallback text shown if image fails to load */
   font-size:11px;font-weight:500;color:#bbb;
   text-align:center;line-height:1.3;display:none;
 }
 .logo-img-wrap img.errored{display:none;}
 .logo-img-wrap img.errored + .logo-fb{display:block;}
+.logo-name{
+  font-size:10px;font-weight:500;color:#555;
+  text-align:center;line-height:1.3;
+}
 
 /* ── ABOUT SECTION ───────────────────────── */
 .about-section{padding:64px 24px;max-width:900px;margin:0 auto;}
@@ -356,7 +375,7 @@ body{
 
 /* ── CONTACT BAND ────────────────────────── */
 .contact-band{
-  background:#0F0C0A;padding:72px 24px;text-align:center;
+  background:#0F0C0A;padding:64px 24px 48px;text-align:center;
 }
 .contact-band h2{
   font-family:'Inter',sans-serif;
@@ -387,7 +406,11 @@ footer{
 }
 .footer-inner{
   max-width:900px;margin:0 auto;
-  display:flex;align-items:center;justify-content:center;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+}
+.footer-logo{
+  width:20px;height:20px;border-radius:5px;
+  display:block;object-fit:contain;flex-shrink:0;
 }
 .f-logo{
   font-family:'Inter',sans-serif;
@@ -395,23 +418,8 @@ footer{
 }
 .f-copy{font-size:11px;color:#888;}
 
-
-
-/* ── APP ICON PLACEHOLDER ────────────────── */
-.app-icon-placeholder{
-  width:56px;height:56px;
-  border:2px dashed var(--bdr);
-  border-radius:14px;
-  background:#fff;
-  margin-bottom:16px;
-  display:flex;align-items:center;justify-content:center;
-}
-.app-icon-placeholder span{
-  font-size:9px;font-weight:500;color:#ccc;
-  text-align:center;line-height:1.4;
-}
 /* ── VIRTUOUS CYCLE SECTION ──────────────── */
-.vc-section{background:#F2F4FA;padding:64px 24px;border-top:1px solid #dce1f0;}
+.vc-section{background:#F2F4FA;padding:64px 24px;}
 .vc-inner{
   max-width:900px;margin:0 auto;
   display:grid;grid-template-columns:1fr 1fr;
@@ -421,34 +429,23 @@ footer{
   font-size:clamp(26px,4vw,40px);letter-spacing:-1.5px;
   line-height:1.15;margin-bottom:16px;
 }
-.vc-app-icon{
-  width:56px;height:56px;border-radius:14px;
-  margin-bottom:16px;
-  box-shadow:0 4px 16px rgba(0,0,0,.1);
-}
-.vc-screenshot{
-  width:100%;max-width:260px;
-  border-radius:16px;
-  box-shadow:16px 24px 60px rgba(0,0,0,.1);
-  display:block;margin:0 auto;
-}
-@media(max-width:720px){
-  .vc-inner{grid-template-columns:1fr;}
-}
 
 /* ── SCREENSHOTS ─────────────────────────── */
 .screenshots-wrap{
   display:flex;gap:16px;justify-content:center;align-items:flex-end;
 }
 .screenshot-phone{
-  width:160px;height:300px;
-  border-radius:24px;
+  width:160px;height:346px;
+  border-radius:16px;
   flex-shrink:0;
+  object-fit:cover;
+  display:block;
 }
 
 /* ── ABOUT 2 ─────────────────────────────── */
-.about-section2{padding:64px 24px;max-width:900px;margin:0 auto;}
+.about-section2{background:var(--lt);padding:64px 24px;}
 .about2-inner{
+  max-width:900px;margin:0 auto;
   display:grid;grid-template-columns:1fr 1fr;
   gap:56px;align-items:center;
 }
@@ -459,24 +456,13 @@ footer{
 .about2-photo{
   width:100%;height:320px;
   border-radius:16px;
-}
-
-/* ── PLACEHOLDERS ────────────────────────── */
-.placeholder-img{
-  background:var(--lt);
-  border:2px dashed var(--bdr);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-}
-.placeholder-label{
-  font-size:12px;font-weight:500;color:#bbb;
-  text-align:center;line-height:1.6;
-  pointer-events:none;
+  object-fit:cover;
+  display:block;
 }
 
 @media(max-width:720px){
   .screenshots-wrap{gap:12px;}
-  .screenshot-phone{width:130px;height:240px;}
+  .screenshot-phone{width:130px;height:281px;}
   .about2-inner{grid-template-columns:1fr;}
   .about2-photo{height:220px;}
 }
@@ -493,7 +479,7 @@ footer{
 
   .about-grid{grid-template-columns:1fr;}
 
-  .logos-grid{gap:20px 24px;}
+  .logos-grid{grid-template-columns:repeat(4,1fr);gap:20px 12px;}
   .logo-img-wrap{width:72px;height:40px;}
   .logo-img-wrap img{max-width:72px;max-height:36px;}
 }
@@ -510,17 +496,17 @@ footer{
 <nav class="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <!-- LOGO: replace img src with your icon file -->
-      <div style="width:28px;height:28px;border:2px dashed #ccc;border-radius:6px;flex-shrink:0;"></div>
+      <img src="assets/logo-icon.png" alt="Eat More Pixels" class="nav-logo-icon">
       Eat More Pixels
     </a>
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="#roundtrip">Roundtrip</a></li>
+        <li><a href="#virtuous-cycle">Virtuous Cycle</a></li>
         <li><a href="#work">Work</a></li>
         <li><a href="#about">About</a></li>
       </ul>
-      <a href="#contact" class="nav-cta">Get in touch</a>
+      <a href="mailto:hello@eatmorepixels.com.au" class="nav-cta">Get in touch</a>
     </div>
     <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -529,9 +515,10 @@ footer{
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#roundtrip" onclick="toggleMenu()">Roundtrip</a>
+  <a href="#virtuous-cycle" onclick="toggleMenu()">Virtuous Cycle</a>
   <a href="#work" onclick="toggleMenu()">Work</a>
   <a href="#about" onclick="toggleMenu()">About</a>
-  <a href="#contact" onclick="toggleMenu()">Get in touch</a>
+  <a href="mailto:hello@eatmorepixels.com.au" onclick="toggleMenu()">Get in touch</a>
 </div>
 
 <!-- HERO -->
@@ -539,7 +526,7 @@ footer{
   <h1>We build apps people love to use.</h1>
   <p class="hero-body">Eat More Pixels is a Brisbane app company building polished, high-quality mobile apps for government, industry, and researchers.</p>
   <div class="hero-actions">
-    <a href="#contact" class="btn-outline">Get in touch</a>
+    <a href="mailto:hello@eatmorepixels.com.au" class="btn-outline">Get in touch</a>
   </div>
 </section>
 
@@ -547,7 +534,7 @@ footer{
 <section class="rt-section" id="roundtrip">
   <div class="rt-inner">
     <div>
-      <div class="app-icon-placeholder"><!-- replace with <img> --><span>App<br>icon</span></div>
+      <img src="assets/roundtrip/app-icon.png" alt="Roundtrip app icon" class="app-icon">
       <div class="sec-label">Our product</div>
       <h2>Roundtrip — Australia's best digital learner logbook app.</h2>
       <p class="rt-body">We built and operate Roundtrip, the highest-rated learner driver logbook app in Australia, used in NSW and Tasmania. It replaces paper and legacy digital logbooks with a modern, research-backed platform focused on road safety outcomes. not just tracking hours.</p>
@@ -560,24 +547,20 @@ footer{
       <a href="https://www.roundtripapp.com" class="rt-btn" target="_blank" rel="noopener">Visit roundtripapp.com</a>
     </div>
     <div class="screenshots-wrap">
-      <div class="screenshot-phone placeholder-img">
-        <div class="placeholder-label">App screenshot<br>e.g. Trips screen</div>
-      </div>
-      <div class="screenshot-phone placeholder-img">
-        <div class="placeholder-label">App screenshot<br>e.g. Logbook screen</div>
-      </div>
+      <img src="assets/roundtrip/screenshot-1.png" alt="Roundtrip trips screen" class="screenshot-phone">
+      <img src="assets/roundtrip/screenshot-2.png" alt="Roundtrip logbook screen" class="screenshot-phone">
     </div>
   </div>
 </section>
 
 <!-- VIRTUOUS CYCLE -->
-<section class="vc-section">
+<section class="vc-section" id="virtuous-cycle">
   <div class="vc-inner">
     <div>
-      <div class="app-icon-placeholder" style="border-color:rgba(77,217,192,.4);"><!-- replace with <img> --><span>App<br>icon</span></div>
+      <img src="assets/virtuous-cycle/app-icon.png" alt="Virtuous Cycle app icon" class="app-icon" style="box-shadow:0 4px 16px rgba(27,42,94,.2);">
       <div class="sec-label" style="color:#2a8a80;">Our product</div>
       <h2>Virtuous Cycle — make regular bike riding fun and easy.</h2>
-      <p class="rt-body">Virtuous Cycle encourages regular bike riding through route search, ride metrics, awards, and a learning centre. It offers up to three route variations per destination to cater for riders of varying ability levels. A winner of the Transport for NSW Active Transport Bike Riding Innovation Challenge.</p>
+      <p class="rt-body">Virtuous Cycle encourages regular bike riding through route search, ride metrics, awards, and a learning centre. It offers up to three route variations per destination to cater for riders of varying ability levels. A winner of the NSW Government Active Transport Bike Riding Innovation Challenge.</p>
       <div class="rt-badges">
         <span class="rt-badge" style="border-color:rgba(77,217,192,.4);color:#1B2A5E;">iOS App</span>
         <span class="rt-badge" style="border-color:rgba(77,217,192,.4);color:#1B2A5E;">Built for NSW cyclists</span>
@@ -586,12 +569,8 @@ footer{
     </div>
     <div class="vc-visual">
       <div class="screenshots-wrap">
-        <div class="screenshot-phone placeholder-img" style="background:rgba(27,42,94,.05);border-color:rgba(77,217,192,.3);">
-          <div class="placeholder-label">App screenshot<br>e.g. Route search</div>
-        </div>
-        <div class="screenshot-phone placeholder-img" style="background:rgba(27,42,94,.05);border-color:rgba(77,217,192,.3);">
-          <div class="placeholder-label">App screenshot<br>e.g. Ride metrics</div>
-        </div>
+        <img src="assets/virtuous-cycle/screenshot-1.png" alt="Virtuous Cycle route search screen" class="screenshot-phone">
+        <img src="assets/virtuous-cycle/screenshot-2.png" alt="Virtuous Cycle ride metrics screen" class="screenshot-phone">
       </div>
     </div>
   </div>
@@ -599,12 +578,15 @@ footer{
 
 <!-- OTHER WORK -->
 <section class="work-section" id="work">
+  <div class="work-inner">
   <div class="sec-label">Custom Apps</div>
   <h2>Apps for researchers and government.</h2>
   <p class="sec-sub">Alongside Roundtrip, we work with universities, councils, and health organisations to create apps where quality and real-world outcomes matter.</p>
   <div class="work-grid">
     <div class="work-card">
-      <div class="work-card-img placeholder-img"><div class="placeholder-label">App screenshot<br>e.g. research app UI</div></div>
+      <div class="work-card-img">
+        <img src="assets/work/research-apps.jpg" alt="Research app interface">
+      </div>
       <div class="work-card-body">
         <div class="work-tag">Research Apps</div>
         <h3>Apps for Researchers</h3>
@@ -612,7 +594,9 @@ footer{
       </div>
     </div>
     <div class="work-card">
-      <div class="work-card-img placeholder-img"><div class="placeholder-label">Photo<br>e.g. person using app</div></div>
+      <div class="work-card-img">
+        <img src="assets/work/government.jpg" alt="Person using a government app">
+      </div>
       <div class="work-card-body">
         <div class="work-tag">Government & Health</div>
         <h3>Public Sector</h3>
@@ -620,15 +604,10 @@ footer{
       </div>
     </div>
   </div>
+  </div>
 </section>
 
 <!-- LOGOS -->
-<!-- 
-  LOGOS: Using Google's favicon service as placeholder images for the prototype.
-  For production, replace each img src with the actual logo file path.
-  e.g. src="/assets/logos/transport-nsw.png"
-  The filter:grayscale can be removed once real logos are in place.
--->
 <section class="logos-section">
   <div class="logos-inner">
     <div class="logos-lbl">Organisations we've worked with</div>
@@ -636,114 +615,130 @@ footer{
 
       <div class="logo-item">
         <div class="logo-img-wrap">
-          <img src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.transport.nsw.gov.au&size=128"
-               alt="Transport for NSW" onerror="this.classList.add('errored')">
-          <div class="logo-fb">Transport for NSW</div>
+          <img src="assets/logos/transport-nsw.png" alt="NSW Government" onerror="this.classList.add('errored')">
+          <div class="logo-fb">NSW Government</div>
         </div>
+        <span class="logo-name">NSW Government</span>
       </div>
 
       <div class="logo-item">
         <div class="logo-img-wrap">
-          <img src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.tas.gov.au&size=128"
-               alt="Tasmanian Government" onerror="this.classList.add('errored')">
+          <img src="assets/logos/tasmanian-government.png" alt="Tasmanian Government" onerror="this.classList.add('errored')">
           <div class="logo-fb">Tasmanian Government</div>
         </div>
+        <span class="logo-name">Tasmanian Government</span>
       </div>
 
       <div class="logo-item">
         <div class="logo-img-wrap">
-          <img src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.qld.gov.au&size=128"
-               alt="QLD Government" onerror="this.classList.add('errored')">
+          <img src="assets/logos/qld-government.png" alt="QLD Government" onerror="this.classList.add('errored')">
           <div class="logo-fb">QLD Government</div>
         </div>
+        <span class="logo-name">QLD Government</span>
       </div>
 
       <div class="logo-item">
         <div class="logo-img-wrap">
-          <img src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.heartfoundation.org.au&size=128"
-               alt="Heart Foundation" onerror="this.classList.add('errored')">
+          <img src="assets/logos/heart-foundation.png" alt="Heart Foundation" onerror="this.classList.add('errored')">
           <div class="logo-fb">Heart Foundation</div>
         </div>
+        <span class="logo-name">Heart Foundation</span>
       </div>
 
       <div class="logo-item">
         <div class="logo-img-wrap">
-          <img src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.rspca.org.au&size=128"
-               alt="RSPCA" onerror="this.classList.add('errored')">
+          <img src="assets/logos/rspca.png" alt="RSPCA" onerror="this.classList.add('errored')">
           <div class="logo-fb">RSPCA</div>
         </div>
+        <span class="logo-name">RSPCA</span>
       </div>
 
       <div class="logo-item">
         <div class="logo-img-wrap">
-          <img src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.qut.edu.au&size=128"
-               alt="QUT" onerror="this.classList.add('errored')">
+          <img src="assets/logos/qut.png" alt="QUT" onerror="this.classList.add('errored')">
           <div class="logo-fb">QUT</div>
         </div>
+        <span class="logo-name">QUT</span>
       </div>
 
       <div class="logo-item">
         <div class="logo-img-wrap">
-          <img src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.uow.edu.au&size=128"
-               alt="University of Wollongong" onerror="this.classList.add('errored')">
+          <img src="assets/logos/uni-wollongong.png" alt="University of Wollongong" onerror="this.classList.add('errored')">
           <div class="logo-fb">Uni of Wollongong</div>
         </div>
+        <span class="logo-name">Uni of Wollongong</span>
       </div>
 
       <div class="logo-item">
         <div class="logo-img-wrap">
-          <img src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.autismqld.com.au&size=128"
-               alt="Autism Queensland" onerror="this.classList.add('errored')">
-          <div class="logo-fb">Autism QLD</div>
+          <img src="assets/logos/autism-qld.png" alt="Autism Queensland" onerror="this.classList.add('errored')">
+          <div class="logo-fb">Autism Queensland</div>
         </div>
+        <span class="logo-name">Autism Queensland</span>
       </div>
 
       <div class="logo-item">
         <div class="logo-img-wrap">
-          <img src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.qsuper.qld.gov.au&size=128"
-               alt="QSuper" onerror="this.classList.add('errored')">
+          <img src="assets/logos/qsuper.png" alt="QSuper" onerror="this.classList.add('errored')">
           <div class="logo-fb">QSuper</div>
         </div>
+        <span class="logo-name">QSuper</span>
       </div>
 
       <div class="logo-item">
         <div class="logo-img-wrap">
-          <img src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.tweed.nsw.gov.au&size=128"
-               alt="Tweed Shire Council" onerror="this.classList.add('errored')">
+          <img src="assets/logos/tweed-shire-council.png" alt="Tweed Shire Council" onerror="this.classList.add('errored')">
           <div class="logo-fb">Tweed Shire Council</div>
         </div>
+        <span class="logo-name">Tweed Shire Council</span>
       </div>
 
       <div class="logo-item">
         <div class="logo-img-wrap">
-          <img src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.moretonbay.qld.gov.au&size=128"
-               alt="City of Moreton Bay" onerror="this.classList.add('errored')">
+          <img src="assets/logos/moreton-bay.png" alt="City of Moreton Bay" onerror="this.classList.add('errored')">
           <div class="logo-fb">City of Moreton Bay</div>
         </div>
+        <span class="logo-name">City of Moreton Bay</span>
       </div>
 
       <div class="logo-item">
         <div class="logo-img-wrap">
-          <img src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.greatsouthernbank.com.au&size=128"
-               alt="Great Southern Bank" onerror="this.classList.add('errored')">
+          <img src="assets/logos/great-southern-bank.png" alt="Great Southern Bank" onerror="this.classList.add('errored')">
           <div class="logo-fb">Great Southern Bank</div>
         </div>
+        <span class="logo-name">Great Southern Bank</span>
       </div>
 
       <div class="logo-item">
         <div class="logo-img-wrap">
-          <img src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://josephmark.com.au&size=128"
-               alt="JosephMark" onerror="this.classList.add('errored')">
-          <div class="logo-fb">JosephMark</div>
+          <img src="assets/logos/josephmark.png" alt="Josephmark" onerror="this.classList.add('errored')">
+          <div class="logo-fb">Josephmark</div>
         </div>
+        <span class="logo-name">Josephmark</span>
       </div>
 
       <div class="logo-item">
         <div class="logo-img-wrap">
-          <img src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.digitalchild.org.au&size=128"
-               alt="Digital Child" onerror="this.classList.add('errored')">
+          <img src="assets/logos/digital-child.png" alt="Digital Child" onerror="this.classList.add('errored')">
           <div class="logo-fb">Digital Child</div>
         </div>
+        <span class="logo-name">Digital Child</span>
+      </div>
+
+      <div class="logo-item">
+        <div class="logo-img-wrap">
+          <img src="assets/logos/australian-government.png" alt="Australian Government" onerror="this.classList.add('errored')">
+          <div class="logo-fb">Australian Government</div>
+        </div>
+        <span class="logo-name">Australian Government</span>
+      </div>
+
+      <div class="logo-item">
+        <div class="logo-img-wrap">
+          <img src="assets/logos/compono.png" alt="Compono" onerror="this.classList.add('errored')">
+          <div class="logo-fb">Compono</div>
+        </div>
+        <span class="logo-name">Compono</span>
       </div>
 
     </div>
@@ -757,11 +752,9 @@ footer{
       <div class="sec-label">About us</div>
       <h2>Research-led. Brisbane-based. Since 2015.</h2>
       <p class="sec-sub">Eat More Pixels is a Brisbane app company specialising in mobile app development. We combine technical expertise with research to build great apps that deliver real-world impact.</p>
-      <p class="sec-sub">Roundtrip started as a PhD research project on safer driving in young drivers. That curiosity-first mindset still shapes everything we build.</p>
+      <p class="sec-sub">Our co-founders met as PhD researchers in the early 2010s and that curiosity-first mindset still shapes everything we build.</p>
     </div>
-    <div class="about2-photo placeholder-img wide">
-      <div class="placeholder-label">Team photo</div>
-    </div>
+    <img src="assets/team/team-photo.jpg" alt="The Eat More Pixels team" class="about2-photo">
   </div>
 </section>
 
@@ -775,6 +768,7 @@ footer{
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
+    <img src="assets/logo-icon.png" alt="Eat More Pixels" class="footer-logo">
     <span class="f-copy">© Eat More Pixels Pty Ltd · Brisbane, Australia</span>
   </div>
 </footer>
@@ -783,7 +777,6 @@ footer{
 function toggleMenu(){
   document.getElementById('mobileMenu').classList.toggle('open');
 }
-// Handle broken images gracefully
 document.querySelectorAll('.logo-img-wrap img').forEach(img=>{
   img.addEventListener('error',()=>img.classList.add('errored'));
 });
