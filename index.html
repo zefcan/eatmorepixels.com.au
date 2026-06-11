@@ -77,6 +77,7 @@ body{
 }
 .nav-right{
   display:flex;align-items:center;gap:28px;
+  position:relative;top:3px;
 }
 .nav-links{display:flex;gap:24px;list-style:none;}
 .nav-links a{
@@ -123,8 +124,51 @@ body{
 /* ── HERO ────────────────────────────────── */
 .hero{
   padding:72px 24px 64px;
-  max-width:760px;margin:0 auto;
   text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero-inner{
+  max-width:760px;margin:0 auto;
+  position:relative;z-index:1;
+}
+.hero-bg-icons{
+  position:absolute;
+  top:-30%;bottom:-30%;left:-5%;right:-5%;
+  display:flex;flex-direction:column;
+  justify-content:center;gap:10px;
+  pointer-events:none;user-select:none;
+  opacity:.82;
+  transform:rotate(-4deg) translateZ(0);
+  mask-image:radial-gradient(ellipse 55% 60% at 50% 50%, transparent 15%, black 70%);
+  -webkit-mask-image:radial-gradient(ellipse 55% 60% at 50% 50%, transparent 15%, black 70%);
+  isolation:isolate;
+}
+.icon-row{
+  display:flex;gap:10px;
+  width:max-content;height:120px;
+  will-change:transform;
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+  transform:translateZ(0);
+}
+.icon-row--left  { animation:icons-left  85s linear infinite; }
+.icon-row--right { animation:icons-right 105s linear infinite; }
+.icon-row--left2 { animation:icons-left  95s linear infinite; }
+.icon-row--right2{ animation:icons-right 90s linear infinite; }
+.icon-row--left3 { animation:icons-left  78s linear infinite; }
+@keyframes icons-left{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+@keyframes icons-right{
+  from{transform:translateX(-50%);}
+  to{transform:translateX(0);}
+}
+.app-icon-bg{
+  width:120px;height:120px;
+  border-radius:14px;
+  flex-shrink:0;
 }
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
@@ -141,7 +185,7 @@ body{
 }
 .hero h1 em{font-style:italic;color:var(--mid);}
 .hero-body{
-  font-size:17px;line-height:1.75;color:var(--mid);
+  font-size:17px;line-height:1.75;color:#444;
   max-width:520px;margin:0 auto 32px;
 }
 .hero-actions{
@@ -150,7 +194,7 @@ body{
 .btn-dark{
   background:var(--blk);color:var(--white);
   font-size:14px;font-weight:500;padding:12px 24px;
-  border-radius:8px;text-decoration:none;
+  border-radius:100px;text-decoration:none;
   transition:background .15s;
 }
 .btn-dark:hover{background:#333;}
@@ -383,23 +427,59 @@ body{
   font-size:clamp(28px,5vw,52px);color:var(--white);
   letter-spacing:-2px;line-height:1.1;margin-bottom:12px;
 }
-.contact-band p{font-size:15px;color:#fff;margin-bottom:28px;}
-.contact-email{
-  font-family:'Inter',sans-serif;
-  font-size:clamp(18px,3vw,28px);color:var(--y);
-  text-decoration:none;letter-spacing:-.5px;
-  transition:color .2s;
-}
-.contact-email:hover{color:#fff;}
+.contact-band > p{font-size:15px;color:#aaa;margin-bottom:36px;}
 .contact-btn{
   display:inline-block;
   background:var(--y);color:var(--blk);
-  font-size:16px;font-weight:600;
+  font-size:15px;font-weight:600;
   padding:14px 28px;border-radius:100px;
-  text-decoration:none;
+  text-decoration:none;border:none;cursor:pointer;
   transition:background .15s;
+  font-family:'Inter',sans-serif;
 }
 .contact-btn:hover{background:#e8c800;}
+.contact-btn:disabled{opacity:.6;cursor:not-allowed;}
+.contact-form{
+  max-width:480px;margin:0 auto;
+  display:flex;flex-direction:column;gap:12px;
+  text-align:left;
+}
+.contact-row{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+}
+.contact-field{display:flex;flex-direction:column;gap:4px;}
+.contact-form input,
+.contact-form textarea{
+  width:100%;padding:12px 16px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:10px;
+  color:var(--white);
+  font-family:'Inter',sans-serif;font-size:14px;
+  outline:none;transition:border-color .2s;
+}
+.contact-form input::placeholder,
+.contact-form textarea::placeholder{color:rgba(255,255,255,.35);}
+.contact-form input:focus,
+.contact-form textarea:focus{border-color:var(--y);}
+.contact-form input[aria-invalid="true"],
+.contact-form textarea[aria-invalid="true"]{border-color:#ff6b6b;}
+.contact-form textarea{resize:vertical;min-height:110px;}
+.contact-form-footer{
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  flex-wrap:wrap;
+}
+[data-fs-error]{font-size:12px;color:#ff6b6b;min-height:16px;}
+[data-fs-success]{
+  font-size:16px;color:var(--y);
+  max-width:480px;margin:0 auto 16px;
+  text-align:center;
+  display:none;
+  transition:opacity .5s ease;
+}
+@media(max-width:720px){
+  .contact-row{grid-template-columns:1fr;}
+}
 
 /* ── FOOTER ──────────────────────────────── */
 footer{
@@ -491,6 +571,19 @@ footer{
   .hero h1{letter-spacing:-1.5px;}
 }
 
+/* ── LOGO RAIN ───────────────────────────── */
+@keyframes logo-fall{
+  0%  {transform:translateY(-70px) translateX(0) rotate(0deg);opacity:1;}
+  80% {opacity:1;}
+  100%{transform:translateY(110vh) translateX(var(--drift)) rotate(var(--spin));opacity:0;}
+}
+.logo-rain-piece{
+  position:fixed;top:0;
+  pointer-events:none;z-index:9999;
+  border-radius:8px;
+  animation:logo-fall linear both;
+}
+
 /* ── SCROLL ANIMATIONS ───────────────────── */
 .fade-up{
   opacity:0;
@@ -519,7 +612,7 @@ footer{
         <li><a href="#work">Work</a></li>
         <li><a href="#about">About</a></li>
       </ul>
-      <a href="mailto:hello@eatmorepixels.com.au" class="nav-cta">Get in touch</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
     </div>
     <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -531,15 +624,18 @@ footer{
   <a href="#virtuous-cycle" onclick="toggleMenu()">Virtuous Cycle</a>
   <a href="#work" onclick="toggleMenu()">Work</a>
   <a href="#about" onclick="toggleMenu()">About</a>
-  <a href="mailto:hello@eatmorepixels.com.au" onclick="toggleMenu()">Get in touch</a>
+  <a href="#contact" onclick="toggleMenu()">Get in touch</a>
 </div>
 
 <!-- HERO -->
 <section class="hero">
-  <h1>We build apps people love to use.</h1>
-  <p class="hero-body">Eat More Pixels is a Brisbane app company building polished, high-quality mobile apps for government, industry, and researchers.</p>
-  <div class="hero-actions">
-    <a href="mailto:hello@eatmorepixels.com.au" class="btn-outline">Get in touch</a>
+  <div class="hero-bg-icons" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <h1>We build apps people love to use.</h1>
+    <p class="hero-body">Eat More Pixels is a Brisbane app company building polished, high-quality mobile apps for government, industry, and researchers.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-dark">Get in touch</a>
+    </div>
   </div>
 </section>
 
@@ -774,7 +870,32 @@ footer{
 <section class="contact-band" id="contact">
   <h2>Interested in working with us?</h2>
   <p>We'd love to hear from you.</p>
-  <a href="mailto:hello@eatmorepixels.com.au" class="contact-btn">Get In Touch</a>
+  <div data-fs-success>Thanks! We'll be in touch soon.</div>
+  <form id="contact-form" class="contact-form">
+    <input type="hidden" name="_subject" value="New enquiry — Eat More Pixels">
+    <div class="contact-row">
+      <div class="contact-field">
+        <input type="text" name="name" placeholder="Your name" required data-fs-field>
+        <span data-fs-error="name"></span>
+      </div>
+      <div class="contact-field">
+        <input type="email" name="email" placeholder="Your email" required data-fs-field>
+        <span data-fs-error="email"></span>
+      </div>
+    </div>
+    <div class="contact-field">
+      <input type="tel" name="phone" placeholder="Phone number (optional)" data-fs-field>
+      <span data-fs-error="phone"></span>
+    </div>
+    <div class="contact-field">
+      <textarea name="message" placeholder="Tell us about your project" required data-fs-field></textarea>
+      <span data-fs-error="message"></span>
+    </div>
+    <div class="contact-form-footer">
+      <button type="submit" class="contact-btn" data-fs-submit-btn>Send message</button>
+      <span data-fs-error></span>
+    </div>
+  </form>
 </section>
 
 <!-- FOOTER -->
@@ -786,12 +907,99 @@ footer{
 </footer>
 
 <script>
+  window.formspree = window.formspree || function(){ (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#contact-form', formId: 'maqzdabd' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+<script>
 function toggleMenu(){
   document.getElementById('mobileMenu').classList.toggle('open');
 }
 document.querySelectorAll('.logo-img-wrap img').forEach(img=>{
   img.addEventListener('error',()=>img.classList.add('errored'));
 });
+
+// Hero background icon rows
+(function(){
+  const colors = [
+    // brand yellows & ambers
+    '#FFD400','#FFC107','#FFBF00','#F4C430','#FDCB6E',
+    // warm oranges & browns (bun/meat palette)
+    '#C8956C','#E8956C','#D4834A','#F8C471','#FAD7A0',
+    // greens (lettuce palette + Roundtrip)
+    '#5C9E47','#4CAF50','#6AB04C','#96CEB4','#A9DFBF',
+    // reds & corals (tomato palette)
+    '#C0392B','#E05A4E','#FF6B6B','#F1948A',
+    // blues & teals (Virtuous Cycle palette)
+    '#1B2A5E','#2980B9','#45B7D1','#4DD9C0','#4ECDC4','#A3E4D7',
+    // purples & pinks (accent)
+    '#9B59B6','#DDA0DD','#D7BDE2','#F06292',
+    // warm neutrals & sage
+    '#A29BFE','#74B9FF','#98D8C8','#ABEBC6',
+  ];
+  const rows = [
+    {cls:'icon-row--right2', count:24},
+    {cls:'icon-row--left',   count:24},
+    {cls:'icon-row--right',  count:24},
+    {cls:'icon-row--left2',  count:24},
+    {cls:'icon-row--left3',  count:24},
+  ];
+  const container = document.querySelector('.hero-bg-icons');
+  rows.forEach(({cls, count}) => {
+    const row = document.createElement('div');
+    row.className = 'icon-row ' + cls;
+    // generate one set of icons with random colours, then duplicate for seamless loop
+    const iconColors = Array.from({length: count}, () => colors[Math.floor(Math.random() * colors.length)]);
+    for(let set=0;set<2;set++){
+      iconColors.forEach(color => {
+        const icon = document.createElement('div');
+        icon.className = 'app-icon-bg';
+        icon.style.background = color;
+        row.appendChild(icon);
+      });
+    }
+    container.appendChild(row);
+  });
+})();
+
+// Logo rain easter egg
+document.querySelector('.footer-logo').addEventListener('click', function(e){
+  e.preventDefault();
+  for(let i = 0; i < 60; i++){
+    const img = document.createElement('img');
+    img.src = 'assets/logo-icon.png';
+    img.className = 'logo-rain-piece';
+    const size   = Math.random() * 32 + 16;
+    const drift  = (Math.random() - 0.5) * 120;
+    const spin   = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 360 + 120);
+    const dur    = (Math.random() * 1.8 + 1.4).toFixed(2);
+    const delay  = (Math.random() * 1.8).toFixed(2);
+    img.style.cssText = `
+      left:${(Math.random()*100).toFixed(1)}vw;
+      width:${size.toFixed(0)}px;height:${size.toFixed(0)}px;
+      animation-duration:${dur}s;
+      animation-delay:${delay}s;
+      --drift:${drift.toFixed(0)}px;
+      --spin:${spin.toFixed(0)}deg;
+    `;
+    document.body.appendChild(img);
+    setTimeout(() => img.remove(), (parseFloat(dur) + parseFloat(delay)) * 1000 + 200);
+  }
+});
+
+// Fade out success message after 3s
+const successEl = document.querySelector('[data-fs-success]');
+if(successEl){
+  new MutationObserver((_, obs) => {
+    if(successEl.style.display !== 'none' && successEl.offsetParent !== null){
+      obs.disconnect();
+      setTimeout(() => {
+        successEl.style.opacity = '0';
+        setTimeout(() => { successEl.style.display = 'none'; successEl.style.opacity = ''; }, 500);
+      }, 3000);
+    }
+  }).observe(successEl, {attributes:true, attributeFilter:['style']});
+}
 
 // Scroll fade-in
 const sections = document.querySelectorAll('.hero, .rt-section, .vc-section, .work-section, .logos-section, .about-section2, .contact-band');
