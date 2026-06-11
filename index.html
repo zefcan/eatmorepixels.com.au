@@ -107,6 +107,7 @@ body{
 }
 .mobile-menu{
   display:none;
+  position:fixed;top:60px;left:0;right:0;z-index:99;
   background:var(--white);border-bottom:1px solid var(--bdr);
   padding:16px 24px;
   flex-direction:column;gap:0;
@@ -462,7 +463,7 @@ footer{
 
 @media(max-width:720px){
   .screenshots-wrap{gap:12px;}
-  .screenshot-phone{width:130px;height:281px;}
+  .screenshot-phone{width:calc(50vw - 30px);height:calc((50vw - 30px) * 346 / 160);}
   .about2-inner{grid-template-columns:1fr;}
   .about2-photo{height:220px;}
 }
@@ -473,6 +474,7 @@ footer{
   .nav-hamburger{display:flex;}
 
   .rt-inner{grid-template-columns:1fr;}
+  .vc-inner{grid-template-columns:1fr;}
   .phone-wrap{display:none;}
 
   .work-grid{grid-template-columns:1fr;}
@@ -751,8 +753,7 @@ footer{
     <div class="about2-text">
       <div class="sec-label">About us</div>
       <h2>Research-led. Brisbane-based. Since 2015.</h2>
-      <p class="sec-sub">Eat More Pixels is a Brisbane app company specialising in mobile app development. We combine technical expertise with research to build great apps that deliver real-world impact.</p>
-      <p class="sec-sub">Our co-founders met as PhD researchers in the early 2010s and that curiosity-first mindset still shapes everything we build.</p>
+      <p class="sec-sub">Eat More Pixels is a Brisbane app company specialising in mobile app development. We combine technical expertise with research to build great apps that deliver real-world impact. Our co-founders met as PhD researchers in the early 2010s and that curiosity-first mindset still shapes everything we build.</p>
     </div>
     <img src="assets/team/team-photo.jpg" alt="The Eat More Pixels team" class="about2-photo">
   </div>
