@@ -490,6 +490,17 @@ footer{
   .hero{padding:56px 20px 48px;}
   .hero h1{letter-spacing:-1.5px;}
 }
+
+/* ── SCROLL ANIMATIONS ───────────────────── */
+.fade-up{
+  opacity:0;
+  transform:translateY(32px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+.fade-up.visible{
+  opacity:1;
+  transform:translateY(0);
+}
 </style>
 </head>
 <body>
@@ -781,6 +792,21 @@ function toggleMenu(){
 document.querySelectorAll('.logo-img-wrap img').forEach(img=>{
   img.addEventListener('error',()=>img.classList.add('errored'));
 });
+
+// Scroll fade-in
+const sections = document.querySelectorAll('.hero, .rt-section, .vc-section, .work-section, .logos-section, .about-section2, .contact-band');
+sections.forEach(el => el.classList.add('fade-up'));
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+sections.forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
