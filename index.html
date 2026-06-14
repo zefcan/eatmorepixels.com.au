@@ -123,7 +123,7 @@ body{
 
 /* ── HERO ────────────────────────────────── */
 .hero{
-  padding:72px 24px 64px;
+  padding:90px 24px 64px;
   text-align:center;
   position:relative;
   overflow:hidden;
@@ -245,6 +245,36 @@ body{
   text-decoration:none;transition:background .15s;
 }
 .rt-btn:hover{background:#e8c800;}
+
+/* ── ROUNDTRIP GOV STRIP ─────────────────── */
+.rt-gov-strip{background:#1a1a1a;padding:20px 24px;position:relative;overflow:hidden;}
+.rt-gov-strip-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;position:relative;z-index:1;}
+.rt-gov-strip p{font-size:14px;font-weight:700;color:rgba(255,255,255,.85);margin:0;font-family:'Inter',sans-serif;}
+.rt-gov-btn{display:inline-block;font-size:13px;font-weight:600;padding:9px 18px;border-radius:100px;background:var(--y);color:var(--blk);text-decoration:none;white-space:nowrap;transition:background .15s;font-family:'Inter',sans-serif;}
+.rt-gov-btn:hover{background:#e8c800;}
+
+/* ── PLATES PLUS ─────────────────────────── */
+.pp-section{background:#EEF7F6;padding:64px 24px;}
+.pp-inner{
+  max-width:900px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:56px;align-items:center;
+}
+.pp-inner h2{
+  font-family:'Inter',sans-serif;
+  font-size:clamp(26px,4vw,40px);line-height:1.15;
+  letter-spacing:-1.5px;margin-bottom:16px;
+}
+#plates-plus .sec-label{color:#005B6E;}
+.pp-btn{
+  display:inline-block;
+  background:#006B7A;color:#fff;
+  font-size:14px;font-weight:600;
+  padding:12px 22px;border-radius:100px;
+  text-decoration:none;transition:background .15s;
+}
+.pp-btn:hover{background:#005060;}
+
 .link-arrow{
   display:inline-flex;align-items:center;gap:6px;
   font-size:14px;font-weight:500;color:var(--blk);text-decoration:none;
@@ -554,6 +584,7 @@ footer{
   .nav-hamburger{display:flex;}
 
   .rt-inner{grid-template-columns:1fr;}
+  .pp-inner{grid-template-columns:1fr;}
   .vc-inner{grid-template-columns:1fr;}
   .phone-wrap{display:none;}
 
@@ -608,6 +639,7 @@ footer{
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="#roundtrip">Roundtrip</a></li>
+        <li><a href="#plates-plus">Plates Plus</a></li>
         <li><a href="#virtuous-cycle">Virtuous Cycle</a></li>
         <li><a href="#work">Work</a></li>
         <li><a href="#about">About</a></li>
@@ -621,6 +653,7 @@ footer{
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#roundtrip" onclick="toggleMenu()">Roundtrip</a>
+  <a href="#plates-plus" onclick="toggleMenu()">Plates Plus</a>
   <a href="#virtuous-cycle" onclick="toggleMenu()">Virtuous Cycle</a>
   <a href="#work" onclick="toggleMenu()">Work</a>
   <a href="#about" onclick="toggleMenu()">About</a>
@@ -649,7 +682,6 @@ footer{
       <p class="rt-body">We own and operate Roundtrip, the highest-rated learner driver logbook app in Australia, used officially in NSW and Tasmania. It replaces paper and legacy digital logbooks with a modern, research-backed platform focused on road safety outcomes. Available for rollout to other jurisdictions.</p>
       <div class="rt-badges">
         <span class="rt-badge" style="border-color:rgba(92,158,71,.3);color:#3d6b2a;">Official NSW Logbook</span>
-        <span class="rt-badge" style="border-color:rgba(92,158,71,.3);color:#3d6b2a;">Official TAS Logbook</span>
         <span class="rt-badge" style="border-color:rgba(123,74,45,.25);color:var(--meat);">10M+ trips</span>
         <span class="rt-badge" style="border-color:rgba(255,212,0,.4);color:#8a6e00;">4.7★ App Store</span>
       </div>
@@ -661,6 +693,36 @@ footer{
     </div>
   </div>
 </section>
+
+<!-- PLATES PLUS -->
+<section class="pp-section" id="plates-plus">
+  <div class="pp-inner">
+    <div>
+      <img src="assets/plates-plus/app-icon.png" alt="Plates Plus app icon" class="app-icon">
+      <div class="sec-label">Our product</div>
+      <h2>Plates Plus — Tasmania's official learner logbook app.</h2>
+      <p class="rt-body">Plates Plus is a white-labelled version of Roundtrip, built for the Tasmanian Government. It lets Tasmanian learner drivers digitally record and track their supervised driving hours, replacing paper logbooks with a modern app tailored to Tasmania's GDL requirements.</p>
+      <div class="rt-badges">
+        <span class="rt-badge" style="border-color:rgba(0,107,122,.25);color:#005B6E;">Official TAS Logbook</span>
+        <span class="rt-badge" style="border-color:rgba(0,107,122,.25);color:#005B6E;">White-label</span>
+        <span class="rt-badge" style="border-color:rgba(0,107,122,.25);color:#005B6E;">iOS &amp; Android</span>
+      </div>
+      <a href="https://www.platesplus.tas.gov.au/logbook_app" class="pp-btn" target="_blank" rel="noopener">Visit platesplus.tas.gov.au</a>
+    </div>
+    <div class="screenshots-wrap">
+      <img src="assets/plates-plus/screenshot-1.png" alt="Plates Plus trips screen" class="screenshot-phone">
+      <img src="assets/plates-plus/screenshot-2.png" alt="Plates Plus logbook screen" class="screenshot-phone">
+    </div>
+  </div>
+</section>
+
+<!-- ROUNDTRIP GOV STRIP -->
+<div class="rt-gov-strip">
+  <div class="rt-gov-strip-inner">
+<p>Roundtrip is available for rollout to other states, territories and countries.</p>
+    <a href="https://www.roundtripapp.com/platform" class="rt-gov-btn" target="_blank" rel="noopener">Learn about our platform</a>
+  </div>
+</div>
 
 <!-- VIRTUOUS CYCLE -->
 <section class="vc-section" id="virtuous-cycle">
@@ -690,7 +752,7 @@ footer{
   <div class="work-inner">
   <div class="sec-label">Custom Apps</div>
   <h2>Apps for researchers and government.</h2>
-  <p class="sec-sub">Alongside Roundtrip, we work with universities, councils, and health organisations to create apps where quality and real-world outcomes matter.</p>
+  <p class="sec-sub">Alongside Roundtrip, we work with universities, councils, and health organisations to create apps where research data, ethics and real-world outcomes matter. Have a project in mind? <a href="#contact" style="color:var(--blk);font-weight:600;text-decoration:underline;text-underline-offset:3px;">Get in touch.</a></p>
   <div class="work-grid">
     <div class="work-card">
       <div class="work-card-img">
@@ -869,7 +931,7 @@ footer{
 <!-- CONTACT -->
 <section class="contact-band" id="contact">
   <h2>Interested in working with us?</h2>
-  <p>We'd love to hear from you.</p>
+  <p>Talk to us about Roundtrip for your jurisdiction, or a research or government app.</p>
   <div data-fs-success>Thanks! We'll be in touch soon.</div>
   <form id="contact-form" class="contact-form">
     <input type="hidden" name="_subject" value="New enquiry — Eat More Pixels">
